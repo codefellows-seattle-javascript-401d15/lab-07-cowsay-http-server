@@ -1,23 +1,23 @@
-##Cowsay Lab
+## Cowsay Lab
 
-###Project Description
+### Project Description
 
 HTTP server that tells what the app what to do in the case of a POST or GET request to different pathnames ('/', '/cowsay', or an invalid route, like '/monkey').
 
-###Dependencies
+### Dependencies
 
-- cowsay
-  - npm install -g cowsay
+* cowsay
+  * npm install -g cowsay
 
-###Developer Dependencies
+### Developer Dependencies
 
-- mocha
-  - npm install mocha
-- chai
-  - npm install chai
-- chai-http
-  - npm install chai-http
+* mocha
+  * npm install mocha
+* chai
+  * npm install chai
+* chai-http
+  * npm install chai-http
 
-###Developer Roadblocks
-- Summarizing what this project actually *does*
-- Writing tests that didn't produce false positives
+### Developer Roadblocks
+* Summarizing what this project actually *does*
+* Writing tests that didn't produce false positives
