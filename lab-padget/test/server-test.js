@@ -2,6 +2,7 @@
 
 const server = require('../server');
 const cowsay = require('cowsay');
+console.log(cowsay);
 const chai = require('chai');
 const http = require('chai-http');
 const expect = chai.expect;
