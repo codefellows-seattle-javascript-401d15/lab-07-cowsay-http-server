@@ -66,7 +66,7 @@ describe('Server module', function() {
     describe('undefined endpoint', function() {
       it('should respond with a 400 on bad request', done => {
         chai.request(server)
-        .post('/blah')
+        .get('/blah')
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -78,7 +78,7 @@ describe('Server module', function() {
     describe('/ endpoint', function() {
       it('should respond with a 400 on bad request', done => {
         chai.request(server)
-        .post('/blah')
+        .get('/blah')
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -90,7 +90,7 @@ describe('Server module', function() {
     describe('/cowsay endpoint', function() {
       it('should respond with a 200 on proper request', done => {
         chai.request(server)
-        .post('/cowsay')
+        .get('/cowsay')
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -100,7 +100,7 @@ describe('Server module', function() {
       
       it('should respond with a 400 on bad request', done => {
         chai.request(server)
-        .post('/blah')
+        .get('/blah')
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(400);
