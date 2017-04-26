@@ -15,13 +15,25 @@ describe('Server module', function() {
   });
   
   describe('POST method', function() {
-    describe('/ endpoint', function() {
-      it('should respond with a 404 on bad request', done => {
+    describe('undefined endpoint', function() {
+      it('should respond with a 400 on bad request', done => {
         chai.request(server)
         .post('/blah')
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(400);
+        });
+        done();
+      });
+    });
+    
+    describe('/ endpoint', function() {
+      it('should respond with "Hello World"', done => {
+        chai.request(server)
+        .post('/')
+        .send({})
+        .end((err, res) => {
+          expect(res.body).to.equal('Hello World');
         });
         done();
       });
@@ -50,7 +62,19 @@ describe('Server module', function() {
     });
   });
   
-  describe('GET meethod', function() {
+  describe('GET meethod', function() {    
+    describe('undefined endpoint', function() {
+      it('should respond with a 400 on bad request', done => {
+        chai.request(server)
+        .post('/blah')
+        .send({})
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+        });
+        done();
+      });
+    });
+    
     describe('/ endpoint', function() {
       it('should respond with a 400 on bad request', done => {
         chai.request(server)
