@@ -35,7 +35,7 @@ const server = module.exports = http.createServer(function(req, res) {
 
   if(req.method === 'GET') {
     if(req.url.pathname === '/cowsay') {
-      let message = cowsay.say({text: req.url.query});
+      let message = cowsay.say({text: req.url.query.text});
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.write(message);
       res.end();

@@ -21,8 +21,8 @@ describe('Server module', function() {
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(200)
+          done();
         });
-        done();
       });
     });
   });
@@ -30,11 +30,11 @@ describe('Server module', function() {
     it('should respond with a 200 on proper request', done => {
       chai.request(server)
       .post('/cowsay')
-      .send({})
+      .send({text: 'Hello'})
       .end((err, res) => {
         expect(res.status).to.equal(200)
+        done();
       });
-      done();
     });
     it('should respond with a 400 on bad request', done => {
       chai.request(server)
@@ -42,8 +42,8 @@ describe('Server module', function() {
       .send({})
       .end((err, res) => {
         expect(res.status).to.equal(400)
+        done();
       })
-      done();
     });
   });
   describe('GET method', function() {
@@ -53,26 +53,28 @@ describe('Server module', function() {
         .get('/')
         .end((err, res) => {
           expect(res.status).to.equal(200)
+          done();
         });
-        done();
       });
     });
     describe('/cowsay endpoint', function() {
       it('should respond with a 200 on proper request', done => {
         chai.request(server)
-        .get('/cowsay')
+        .get('/cowsay?text=hello')
         .end((err, res) => {
+          let message = cowsay.say({text: 'hello'});
+          expect(res.text).to.equal(message);
           expect(res.status).to.equal(200)
+          done();
         });
-        done();
       });
       it('should respond with a 400 on bad request', done => {
         chai.request(server)
         .get('/monkey')
         .end((err,res) => {
           expect(res.status).to.equal(400)
+          done();
         });
-        done();
       });
     });
   });
