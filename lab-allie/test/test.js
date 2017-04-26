@@ -46,7 +46,7 @@ describe('Server module', function() {
         .send({})
         .end((err, res) => {
           expect(err).to.be.null;
-          expect(res.status).to.equal(400);
+          expect(res.status).to.equal(200);
         });
         done();
       });
