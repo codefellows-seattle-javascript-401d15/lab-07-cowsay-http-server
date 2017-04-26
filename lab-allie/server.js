@@ -18,12 +18,19 @@ const server = module.exports = http.createServer(function(req, res) {
         if(err) console.error(err);
         console.log(req.body.text);
         let message = cowsay.say({text: req.body.text});
-        console.log('message', message);
+        // console.log('message', message);
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.write(message);
         res.end();
       });
-    } else {
+    } 
+    
+    if(req.url.pathname === '/') {
+      res.write('Hello World!');
+      res.end();
+    }
+    
+    else {
       let message = cowsay.say({text: 'Bad request!\nTry localhost:3000/cowsay'});
       res.writeHead(400, {'Content-Type': 'text/plain'});
       res.write(message);
@@ -37,7 +44,14 @@ const server = module.exports = http.createServer(function(req, res) {
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.write(message);
       res.end();
-    } else {
+    } 
+    
+    if(req.url.pathname === '/') {
+      res.write('Hello World!');
+      res.end();
+    }
+    
+    else {
       let message = cowsay.say({text: 'Bad request!\nTry localhost:3000/cowsay'});
       res.writeHead(400, {'Content-Type': 'text/plain'});
       res.write(message);
