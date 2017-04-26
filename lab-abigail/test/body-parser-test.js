@@ -18,10 +18,40 @@ describe('Server module', function() {
     describe('/ endpoint', function() {
       it('should respond with a 400 on bad request', done => {
         chai.request(server)
-        .post('/mokeysay')
+        .post('/monkeysay')
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(400);
+        });
+        done();
+      });
+
+      it('should respond with a 400 on en empty request', done => {
+        chai.request(server)
+        .post('/')
+        .send({})
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+        });
+        done();
+      });
+
+      it('should respond with text of Hello World', done => {
+        chai.request(server)
+        .post('/')
+        .send({})
+        .end((err, res) => {
+          expect(res.body).to.equal('Hello World');
+        });
+        done();
+      });
+
+      it('should contain text for content-type in the header', done => {
+        chai.request(server)
+        .post('/')
+        .send({})
+        .end((err, res) => {
+          expect(res).to.have.header('content-type', 'text/plain');
         });
         done();
       });
@@ -37,12 +67,13 @@ describe('Server module', function() {
         });
         done();
       });
-      it('should respond with a 400 on bad request', done => {
+
+      it('should contain text for content-type in the header', done => {
         chai.request(server)
         .post('/cowsay')
         .send({})
         .end((err, res) => {
-          expect(res.status).to.equal(400);
+          expect(res).to.have.header('content-type', 'text/plain');
         });
         done();
       });
@@ -55,7 +86,7 @@ describe('Server module', function() {
 
       it('should respond with a 400 on bad request', done => {
         chai.request(server)
-        .get('/monkeysay')
+        .get('/')
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(400);
@@ -63,12 +94,22 @@ describe('Server module', function() {
         done();
       });
 
-      it('should respond with a 200 on proper request', done => {
+      it('should respond with text of Hello World', done => {
         chai.request(server)
-        .get('/cowsay')
+        .get('/')
         .send({})
         .end((err, res) => {
-          expect(res.status).to.equal(200);
+          expect(res.body).to.equal('Hello World');
+        });
+        done();
+      });
+
+      it('should contain text for content-type in the header', done => {
+        chai.request(server)
+        .post('/')
+        .send({})
+        .end((err, res) => {
+          expect(res).to.have.header('content-type', 'text/plain');
         });
         done();
       });
@@ -84,12 +125,33 @@ describe('Server module', function() {
         });
         done();
       });
-      it('should respond with a 400 on bad request', done => {
+
+      it('should contain text for content-type in the header', done => {
         chai.request(server)
         .get('/cowsay')
         .send({})
         .end((err, res) => {
+          expect(res).to.have.header('content-type', 'text/plain');
+        });
+        done();
+      });
+
+      it('should respond with a 400 on bad request', done => {
+        chai.request(server)
+        .get('/monkeysay')
+        .send({})
+        .end((err, res) => {
           expect(res.status).to.equal(400);
+        });
+        done();
+      });
+
+      it('should contain text for content-type in the header', done => {
+        chai.request(server)
+        .get('/monkeysay')
+        .send({})
+        .end((err, res) => {
+          expect(res).to.have.header('content-type', 'text/plain');
         });
         done();
       });
