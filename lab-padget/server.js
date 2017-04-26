@@ -14,7 +14,7 @@ const server = module.exports = http.createServer(function(req, res) {
 
   if(req.method === 'POST') {
     if(req.url.pathname === '/cowsay') {
-      bodyParser(req, function(err) {
+      return bodyParser(req, function(err) {
         if(err) console.error(err);
         let message = cowsay.say({text: req.body.text});
         console.log(req.body);
@@ -33,7 +33,7 @@ const server = module.exports = http.createServer(function(req, res) {
   }
 
   if(req.method === 'GET') {
-    console.log();
+    console.log('Log of req.method GET');
   }
 
 
