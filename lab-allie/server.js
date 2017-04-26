@@ -41,6 +41,7 @@ const server = module.exports = http.createServer(function(req, res) {
       let message = cowsay.say({text: 'Bad request!\nTry localhost:3000/cowsay'});
       res.writeHead(400, {'Content-Type': 'text/plain'});
       res.write(message);
+      res.end();
     }
   }
   
