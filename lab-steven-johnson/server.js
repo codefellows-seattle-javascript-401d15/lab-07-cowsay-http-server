@@ -39,7 +39,6 @@ const server = module.exports = http.createServer(function(req, res){
       let reqQuery = cowsay.say(req.url.query);
       res.writeHead(200, {'Content-Type': 'text/plain'});
       res.write(reqQuery);
-      console.log(res.statusCode);
       res.end();
     } else if (req.url.pathname === '/') {
       res.writeHead(200, {'Content-Type': 'text/plain'});
