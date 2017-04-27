@@ -8,56 +8,59 @@ const cowsay = require('cowsay');
 const PORT = process.env.PORT || 3000;
 
 const server = module.exports = http.createServer(function(req, res) {
-  console.log(req.url);
   req.url = url.parse(req.url);
   req.url.query = queryString.parse(req.url.query);
 
-  if(req.method === 'POST') {
-    if(req.url.pathname === '/cowsay') {
-      return bodyParser(req, function(err) {
-        if(err) console.error(err);
-        console.log(req.body.text);
-        let message = cowsay.say({text: req.body.text, f: 'goat'});
+  if (req.method === 'POST') {
+
+    if (req.url.pathname === '/cowsay') {
+      bodyParser(req, function(err){
+        if (err) console.error(err);
+        let message = cowsay.say({text: req.body.text});
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.write(message);
         res.end();
       });
-    }
 
-    if(req.url.pathname === '/') {
-      res.write('Hello World!');
-      res.end();
-    }
+    } else if (req.url.pathname === '/') {
 
-    else {
-      let message = cowsay.think({text: 'Bad request!\nTry localhost:3000/cowsay'});
       res.writeHead(400, {'Content-Type': 'text/plain'});
-      res.write(message);
-      res.end();
-    }
-  }
-
-  if(req.method === 'GET') {
-
-    if(req.url.pathname === '/cowsay') {
-      let message = cowsay.say({text: req.url.query.text});
-      res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.write(message);
-      res.end();
-    }
-
-    if(req.url.pathname === '/') {
-      res.write('Hello World\n');
+      res.write('hello world!');
       res.end();
 
     } else {
-      let message = cowsay.think({text: 'Bad request!\nTry localhost:3000/cowsay'});
+
+      let message = cowsay.say({text: 'bad request\ntry: localhost:3000/cowsay text=howdy'});
       res.writeHead(400, {'Content-Type': 'text/plain'});
       res.write(message);
       res.end();
     }
   }
-  res.end();
+
+
+  if (req.method === 'GET') {
+
+    if (req.url.pathname === '/cowsay'){
+      let queryRequest = cowsay.say(req.url.query);
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.write(queryRequest);
+      res.end();
+
+    } else if (req.url.pathname === '/') {
+
+      res.writeHead(400, {'Content-Type': 'text/plain'});
+      res.write('hello world!');
+      res.end();
+
+    } else {
+
+      let message = cowsay.say({text: 'bad request\ntry: localhost:3000/cowsay?text=howdy'});
+      res.writeHead(400, {'Content-Type': 'text/plain'});
+      res.write(message);
+      res.end();
+    }
+  }
+
 });
 
 server.listen(PORT, () => console.log(`Listening on port, ${PORT}`));
