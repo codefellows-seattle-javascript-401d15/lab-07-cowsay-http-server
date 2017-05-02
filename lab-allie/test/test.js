@@ -23,6 +23,7 @@ describe('Server module', function() {
         .end((err, res) => {
           expect(err).to.not.be.null;
           expect(res.status).to.equal(400);
+          //expect(res).to.have.status(400);
         });
         done();
       });

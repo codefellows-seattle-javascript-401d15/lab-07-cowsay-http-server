@@ -15,7 +15,6 @@ const server = module.exports = http.createServer(function(req, res) {
     if(req.url.pathname === '/cowsay') {
       return bodyParser(req, function(err) {
         if(err) console.error(err);
-        console.log(req.body.text);
         let message = cowsay.say({text: req.body.text, f: 'goat'});
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.write(message);
