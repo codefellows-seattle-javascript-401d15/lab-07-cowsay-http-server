@@ -1,0 +1,22 @@
+{
+  "name": "lab-maria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "watch": "nodemon server.js",
+    "start": "node server.js",
+    "debug": "DEBUG=cowsay* nodemond server.js"
+  },
+  "author": "maria lee-reed",
+  "license": "MIT",
+  "dependencies": {
+    "cowsay": "^1.1.9"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.3.0"
+  }
+}
