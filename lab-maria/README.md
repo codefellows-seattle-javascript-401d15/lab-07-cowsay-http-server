@@ -7,7 +7,6 @@ Make curl or httpie requests in your terminal to talk to Cows. Also Beavis.
 * clone this repository and ``cd`` into it
 * run ``npm i``
 
-
 ## To Use:
 
 * Start the server using ``npm start`` in one terminal
